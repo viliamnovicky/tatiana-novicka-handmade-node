@@ -1,0 +1,62 @@
+.spinner {
+    width: 30vw;
+    height: 30vw;
+    position: fixed;
+    z-index: 1000000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &-part {
+        border-radius: 50%;
+        position: fixed;
+        
+        &-1 {
+            width: 2vw;
+            height: 2vw;
+            background: $main-color;
+            top: 14vw;
+            left: 14vw;
+        }
+
+        &-2 {
+            width: 5vw;
+            height: 5vw;
+            border: 10px solid rgba($second-color, 0.8);
+            border-color: rgba($second-color, 0.8) transparent rgba($second-color, 0.8) transparent;
+            animation: rotate-clock 1s infinite;
+            top: 12.5vw;
+            left:12.5vw;
+        }
+
+        &-3 {
+            width: 8vw;
+            height: 8vw;
+            border: 10px solid rgba($second-color, 0.6);
+            border-color: transparent rgba($main-color, 0.6) transparent rgba($main-color, 0.6);
+            animation: rotate-anti-clock 1s infinite;
+            top: 11vw;
+            left: 11vw;
+        }
+
+        &-4 {
+            width: 11vw;
+            height: 11vw;
+            border: 10px solid rgba($second-color, 0.4);
+            border-color: rgba($second-color, 0.4) transparent rgba($second-color, 0.4) transparent;
+            animation: rotate-clock 1s infinite;
+            top: 9.5vw;
+            left: 9.5vw;
+        }
+
+        &-5 {
+            width: 14vw;
+            height: 14vw;
+            border: 10px solid rgba($second-color, 0.2);
+            border-color: transparent rgba($main-color, 0.2) transparent rgba($main-color, 0.2);
+            animation: rotate-anti-clock 1s infinite;
+            top: 8vw;
+            left: 8vw;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+.navbar {
+    margin: auto;
+    display: flex;
+    gap: 5%;
+    justify-content: space-evenly;
+    width: 80%;
+
+    @include respond(tab-port) {
+        grid-template-columns: 1fr;
+    }
+
+    @include respond(tab-port) {
+        margin-top: 15rem;
+        background: rgba($dark-color, 0.8);
+        padding-top: 80rem;
+        padding-bottom: 50rem;
+        padding-left: 15rem;
+        padding-right: 15rem;
+        @include absolute-center;
+    }
+
+    &__link {
+        margin-top: 0.5rem;
+        display: grid;
+        color: black;
+        padding: 1.5rem 0;
+        width: 100%;
+        transition: all 0.5s;
+        font-size: $font-size-h4;
+
+        @include respond(small-desktop) {
+            width: 19rem;
+        }
+
+        @include respond(tab-land) {
+            width: 15rem;
+            font-size: $font-size-p;
+        }
+
+        @include respond(tab-port) {
+            margin-top: 5rem;
+            width: 70vw;
+            font-size: $font-size-h3;
+            color: $color-white;
+            background: rgba($main-color, 0.7);
+            border-radius: 1rem;
+        }
+
+        &:hover {
+            background: $light-color-transp;
+            border-radius: 25px;
+
+            @include respond(tab-port) {
+                background: rgba($main-color, 1);
+            }
+        }
+    }
+}

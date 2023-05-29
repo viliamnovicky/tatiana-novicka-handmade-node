@@ -1,0 +1,98 @@
+.img {
+    pointer-events: none;
+    &__modal {
+        height: 100%;
+        border-radius: 1rem;
+        transition: all .2s;
+        background: transparent;
+        pointer-events: none;
+    }
+
+    &__home {
+        height: 50rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    &__blob {
+        position: absolute;
+
+        &--1 {
+            bottom: 0;
+            right: 0;
+            height: 90%
+        }
+
+        &--2 {
+            bottom: 0;
+            left: 0;
+            height: 70%
+        }
+    }
+
+    &__sewing-blob {
+        @include absolute-center;
+        width: 100%;
+        z-index: 1;
+    }
+
+    &__sewing {
+        @include absolute-center;
+        z-index: 2;
+    }
+
+    &__latky {
+        position: absolute;
+        height: 70%;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
+
+    &__latky-blob {
+        @include absolute-center;
+        width: 75%;
+        z-index: -1;
+    }
+
+    &__fantasy {
+        position: absolute;
+        left: 0;
+        height: 75%;
+        top: 8rem;
+    }
+
+    &__fantasy-blob {
+        height: 90%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    &__category {
+        width: 100%;
+        border-radius: 1rem;
+        @include absolute-center;
+        box-shadow: 0 0.2rem 2rem $dark-color;
+        border: 1rem solid white;
+    }
+
+    &__product-cover {
+        width: 100%;
+        margin: auto;
+        border-radius: 1rem;
+        pointer-events: all;
+        cursor: pointer;
+    }
+
+    &__product {
+        width: 100%;
+        margin: auto;
+        border-radius: 1rem;
+        pointer-events: all;
+        cursor: pointer;
+    }
+}

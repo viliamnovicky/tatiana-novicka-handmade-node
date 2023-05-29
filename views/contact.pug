@@ -1,0 +1,26 @@
+extends base
+
+block content
+
+    main.main.main__contact
+        .title 
+            h1.title__header Kontakt
+        section#section-contact.section.section-address.margin-above-footer
+            .section-address-cont.cont-gmap
+                .gmap_canvas
+                    iframe#gmap_canvas(src='https://maps.google.com/maps?q=Turany%20nad%20Ondavou%2054&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
+                    br
+            .form-cont
+                form#myForm.form
+                    h2 Kontaktujte ma
+                    #name
+                        label(for='name') meno
+                        input#name(type='text' name='name')
+                    #mail
+                        label(for='mail') e-mail
+                        input#email(type='text' name='email')
+                    div
+                        label(for='message') spr&aacute;va
+                        textarea#message(name='message' cols='20' rows='5')
+                    div
+                        button.btn.btn-second.send(type='submit') Odosla&tcaron;

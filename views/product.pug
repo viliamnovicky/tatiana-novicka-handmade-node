@@ -1,0 +1,41 @@
+extends base
+
+block content
+    main.main.main__products
+        .title 
+            h1.title__header=product.name
+    .product 
+        .product__images-cont
+            .product__cover 
+                img.img.img__product-cover(src=`/img/products/${product.coverImage}`)
+            .product__images
+                each image in product.productImages
+                    img.img.img__product(src=`/img/products/${image}`)
+        .product__details 
+            h2.product__header Popis produktu
+            p.product__description=product.description
+            
+            .product__posibilities
+                .product__posibility
+                    if product.availability === "skladom"
+                        h2.product__header Cena 
+                        p.product__price=`${product.price} €`
+                    else
+                        h2.product__header Cena 
+                        p.product__price=`od ${product.price} €`
+                .product__posibility
+                    h2.product__header Dostupnosť
+                    p.product__availability=product.availability 
+
+            .product__buttons 
+                .product__button 
+                    h3.product__header Máte záujem?
+
+                    if product.availability === "skladom"
+                        button.btn.btn__product.btn__second Kúpiť
+                    else
+                        button.btn.btn__product.btn__second Objednať
+
+                .product__button 
+                    h3.product__header Máte otázky?
+                    button.btn.btn__product.btn__second Spýtať sa

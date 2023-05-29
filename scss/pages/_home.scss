@@ -1,0 +1,130 @@
+.about {
+    width: 100vw;
+    height: 70rem;
+    position: relative;
+
+    &__bio {
+        background: rgba($color-primary, 0.1);
+        height: 65rem;
+    }
+
+    &__description {
+        background: rgba($color-primary, 0.3);
+
+        .about__cont {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        &--cont {
+            position: relative;
+            border-radius: 50%;
+            width: 35rem;
+            height: 35rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                opacity: 1;
+                z-index: 2;
+            }
+
+            p {
+                position: absolute;
+                opacity: 0;
+                text-align: justify;
+                padding: 2rem;
+                font-weight: 800;
+                z-index: 2;
+            }
+
+            &:hover {
+                width: 40rem;
+                height: 40rem;
+                border-radius: 1rem;
+                p {
+                    opacity: 1;
+                }
+
+                h2 {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &__galantery {
+        background: rgba($color-primary, 0.1);
+
+        .about__text {
+            padding-left: 5rem;
+            padding-right: 20rem;
+            right: auto;
+            left: 0;
+            z-index: 1;
+            width: 70rem;
+        }
+    }
+
+    &__products {
+        background: rgba($color-primary, 0.3);
+
+        .about__text {
+            position: absolute;
+            right: 0;  
+            top: 15rem;  
+            width: 60rem;
+        }
+    }
+
+    &__cont {
+        width: 100rem;
+        height: 100%;
+        @include absolute-center;
+    }
+
+    &__header {
+        font-family: 'Dancing Script', cursive;
+        margin-top: 5rem;
+        z-index: 2;
+        position: relative;
+    }
+
+    &__text {
+        display: block;
+        width: 80rem;
+        height: 30rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: justify;
+        padding: 5rem;
+        padding-left: 10rem;
+        border-radius: 2rem;
+        position: absolute;
+        top: 35%;
+        right: 0;
+        z-index: 1;
+        font-weight: 800;
+    }
+}
+
+#cuts {
+    background: url(../img/noznice.png) center/cover;
+}
+
+#details {
+    background: url(../img/ihla.png) center/cover;
+}
+
+#quality {
+    background: url(../img/kvalita.png) center/cover;
+}
+
+.section-home-cont {
+    width: 25vw;
+}
+

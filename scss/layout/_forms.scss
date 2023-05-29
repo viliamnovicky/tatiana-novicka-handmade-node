@@ -1,0 +1,83 @@
+.form {
+    width: 50rem;
+    margin: auto;
+    height: calc(100vh - 25.5rem);
+    background: $main-color;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    padding-top: 5rem;
+
+    &-cont {
+        background: url(../img/ihla.png) no-repeat center center/cover
+    }
+
+    h2 {
+        text-transform: uppercase;
+        margin-bottom: 5rem;
+    }
+
+    label {
+        text-transform: uppercase;
+        font-size: $font-size-h4;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    input,
+    textarea {
+        width: 90%;
+        font-size: $font-size-h4;
+        margin-bottom: 5rem;
+        text-align: left;
+        padding: .5rem 2rem;
+        outline: none;
+        border: none;
+        border-radius: 1rem;
+        resize: none;
+    }
+
+    &__new-item {
+        height: calc(100vh - 35rem);
+        width: 98vw;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: rgba($main-color-transp, .5);
+    }
+
+    &__header {
+        font-family: 'Dancing Script', cursive;
+        font-size: $font-size-h2;
+        padding-top: 13rem;
+        margin-bottom: 2rem;
+    }
+
+    &__group {
+        width: 70%;
+        height: 100%;
+        margin: auto;
+    }
+}
+
+// input[type=file] {
+//     width: 90%;
+//     color: black;
+//     padding: 1rem;
+//     background: white;
+//     border-radius: 1rem;
+// }
+
+input[type=file]::file-selector-button {
+    margin-right: 2rem;
+    border: 1px solid $second-color;
+    background: white;
+    color: $second-color;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: $second-color;
+    color: white;
+}

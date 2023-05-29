@@ -1,0 +1,13 @@
+extends base
+
+block content
+    main.main.main__products
+        .title 
+            h1.title__header Produkty
+        section.section.section__products.margin-above-footer
+            .cont-grid-4x
+                each category in categories
+                    a.cont-1-of-4.section__products--cont(id=`${category.name}` href=`produkty/${category.name}`)
+                        img.img.img__category(src=`/img/categories/${category.coverImage}`)
+                        p=category.name
+                

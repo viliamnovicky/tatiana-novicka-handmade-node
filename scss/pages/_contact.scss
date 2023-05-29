@@ -1,0 +1,66 @@
+.cont-gmap {
+  background: none;
+  width: 33vw;
+  height: 30rem;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+
+  .gmap_canvas {
+    width: 100%;
+    height: 100%;
+
+    #gmap_canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+    }
+  }
+}
+
+#address-cont {
+  background: url(../img/home03.jpg) no-repeat center center/cover;
+  position: relative;
+}
+
+.copied {
+  position: absolute;
+  background: rgba($second-color, 1);
+  padding: 1rem 2rem;
+  color: $color-white;
+  border-radius: 1rem;
+
+  &-numb {
+    right: 10%;
+    top: 50%;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 20%;
+      height: 50%;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      background: $second-color;
+      left: 20%;
+      top: -25%;
+    }
+  }
+
+  &-mail {
+    right: 10%;
+    top: 75%;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 20%;
+      height: 50%;
+      clip-path: polygon(0 0, 100% 0%, 50% 100%, 0% 0%);
+      background: $second-color;
+      left: 20%;
+      top: 75%;
+    }
+  }
+}
