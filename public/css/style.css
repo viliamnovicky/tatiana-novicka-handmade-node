@@ -390,6 +390,14 @@ p, a {
   right: 0;
   bottom: 0;
 }
+.img__contact-blob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  width: 50%;
+}
 .img__category {
   width: 100%;
   border-radius: 1rem;
@@ -579,6 +587,10 @@ p, a {
   width: 70%;
   height: 100%;
   margin: auto;
+}
+.form__contact {
+  background: none;
+  margin-top: 0;
 }
 
 input[type=file]::file-selector-button {
@@ -1298,6 +1310,25 @@ input[type=file]::file-selector-button:hover {
   background: url("../img/zakaznici/zakaznici02.jpg") no-repeat center center/cover;
 }
 
+.contact {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.contact__header {
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+.contact__text {
+  text-align: left;
+  display: block;
+  width: 35rem;
+  margin: auto;
+  font-size: 2rem;
+}
+.contact__text--right {
+  text-align: right;
+}
+
 .cont-gmap {
   background: none;
   width: 33vw;
@@ -1314,49 +1345,6 @@ input[type=file]::file-selector-button:hover {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
-}
-
-#address-cont {
-  background: url(../img/home03.jpg) no-repeat center center/cover;
-  position: relative;
-}
-
-.copied {
-  position: absolute;
-  background: #ffc0be;
-  padding: 1rem 2rem;
-  color: white;
-  border-radius: 1rem;
-}
-.copied-numb {
-  right: 10%;
-  top: 50%;
-}
-.copied-numb::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 50%;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: rgb(255, 192, 190);
-  left: 20%;
-  top: -25%;
-}
-.copied-mail {
-  right: 10%;
-  top: 75%;
-}
-.copied-mail::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 50%;
-  clip-path: polygon(0 0, 100% 0%, 50% 100%, 0% 0%);
-  background: rgb(255, 192, 190);
-  left: 20%;
-  top: 75%;
 }
 
 /*# sourceMappingURL=style.css.map */

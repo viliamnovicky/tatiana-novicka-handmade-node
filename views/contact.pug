@@ -4,23 +4,31 @@ block content
 
     main.main.main__contact
         .title 
-            h1.title__header Kontakt
-        section#section-contact.section.section-address.margin-above-footer
-            .section-address-cont.cont-gmap
-                .gmap_canvas
-                    iframe#gmap_canvas(src='https://maps.google.com/maps?q=Turany%20nad%20Ondavou%2054&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
-                    br
-            .form-cont
-                form#myForm.form
-                    h2 Kontaktujte ma
-                    #name
-                        label(for='name') meno
-                        input#name(type='text' name='name')
-                    #mail
-                        label(for='mail') e-mail
-                        input#email(type='text' name='email')
-                    div
-                        label(for='message') spr&aacute;va
-                        textarea#message(name='message' cols='20' rows='5')
-                    div
-                        button.btn.btn-second.send(type='submit') Odosla&tcaron;
+            h1.title__header Máte želanie? Kontaktujte ma.
+    .contact
+        .contact__cont
+            h2.title__header.contact__header Adresa 
+            p.contact__text Turany nad Ondavou 54
+            p.contact__text 090 33 Turany nad Ondavou
+            h2.title__header.contact__header E-mail 
+            p.contact__text.contact__text--right novicka.tatiana@zoznam.sk
+            h2.title__header.contact__header Sociálne sieťe 
+            a.contact__text(href="") facebook
+
+        .contact__cont
+            img.img.img__contact-blob(src="/img/contact-blob.png")
+            //- .contact__gmap
+            //-     .gmap_canvas
+            //-         iframe#gmap_canvas(src='https://maps.google.com/maps?q=Turany%20nad%20Ondavou%2054&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
+            //-         br
+            form.form.form__contact
+                label(for='name') meno
+                input#name(type='text' name='name')
+
+                label(for='mail') e-mail
+                input#email(type='text' name='email')
+
+                label(for='message') spr&aacute;va
+                textarea#message(name='message' cols='20' rows='5')
+
+                button.btn.btn-second.send(type='submit') Odosla&tcaron;

@@ -72,6 +72,12 @@
         bottom: 0;
     }
 
+    &__contact-blob {
+        @include absolute-center;
+        z-index: -1;
+        width: 50%;
+    }
+
     &__category {
         width: 100%;
         border-radius: 1rem;
