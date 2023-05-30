@@ -44,6 +44,12 @@
         margin-top: 2rem;
     }
 
+    &__latky {
+        @include absolute-center-x;
+        bottom: 15rem;
+        z-index: 5;
+    }
+
     &__products {
         z-index: 5;
         @include absolute-center-x;
