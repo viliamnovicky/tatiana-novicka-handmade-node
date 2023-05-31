@@ -2,6 +2,9 @@
   "name": "tatiana-novicka-handmade",
   "version": "1.0.0",
   "description": "beautiful handmade page",
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
