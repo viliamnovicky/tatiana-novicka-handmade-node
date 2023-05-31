@@ -1,0 +1,12 @@
+extends base
+
+block content
+
+    main.main 
+        h1.form__header Nový produkt
+        form.form.form__new-category
+            label.form__label(for="name") Názov kategórie
+            input.form__input(type="text" id="name" required)
+            label.form__label(for="coverImage") Vyberte titulnú fotografiu pre kategóriu
+            input(type="file" id="coverImage")
+            button.btn.btn__second#btn-upload-category ULOŽIŤ

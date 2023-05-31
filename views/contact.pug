@@ -7,20 +7,12 @@ block content
             h1.title__header Máte želanie? Kontaktujte ma.
     .contact
         .contact__cont
-            h2.title__header.contact__header Adresa 
-            p.contact__text Turany nad Ondavou 54
-            p.contact__text 090 33 Turany nad Ondavou
-            h2.title__header.contact__header E-mail 
-            p.contact__text.contact__text--right novicka.tatiana@zoznam.sk
-            h2.title__header.contact__header Sociálne sieťe 
-            a.contact__text(href="") facebook
-
+            .gmap_canvas
+                //img.img__map-blob(src="/img/map-blob.png")
+                iframe#gmap_canvas(src='https://maps.google.com/maps?q=Turany%20nad%20Ondavou%2054&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
+        
         .contact__cont
             img.img.img__contact-blob(src="/img/contact-blob.png")
-            //- .contact__gmap
-            //-     .gmap_canvas
-            //-         iframe#gmap_canvas(src='https://maps.google.com/maps?q=Turany%20nad%20Ondavou%2054&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
-            //-         br
             form.form.form__contact
                 label(for='name') meno
                 input#name(type='text' name='name')
@@ -31,4 +23,18 @@ block content
                 label(for='message') spr&aacute;va
                 textarea#message(name='message' cols='20' rows='5')
 
-                button.btn.btn-second.send(type='submit') Odosla&tcaron;
+                button.btn.btn__second#send-message Odoslať
+
+        .contact__cont
+            h2.title__header.contact__header Adresa 
+            p.contact__text Turany nad Ondavou 54
+            p.contact__text 090 33 Turany nad Ondavou
+            h2.title__header.contact__header E-mail 
+            p.contact__text novicka.tatiana@zoznam.sk
+            h2.title__header.contact__header Sociálne siete 
+            p.contact__text.contact__text--social facebook
+            a.btn.btn__second(href='https://www.facebook.com/TatiJanaN-handmade-249652415190403' target='_blank') správa
+            p.contact__text.contact__text--social instagram
+            a.btn.btn__second(href='https://www.instagram.com/tatiananovicka/' target='_blank') správa
+
+        

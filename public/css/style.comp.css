@@ -390,6 +390,15 @@ p, a {
   right: 0;
   bottom: 0;
 }
+.img__contact-blob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  top: 52%;
+  z-index: -1;
+  width: 45%;
+}
 .img__category {
   width: 100%;
   border-radius: 1rem;
@@ -413,6 +422,10 @@ p, a {
   border-radius: 1rem;
   pointer-events: all;
   cursor: pointer;
+}
+.img__social {
+  width: 3rem;
+  filter: invert(18%) sepia(0%) saturate(1350%) hue-rotate(183deg) brightness(95%) contrast(87%);
 }
 
 /* The container must be positioned relative: */
@@ -505,27 +518,15 @@ p, a {
   bottom: 0;
   z-index: 10;
 }
-.footer-copyright p {
+.footer__cont {
   margin: auto;
-  text-align: center;
-  display: inline;
 }
-.footer-copyright i {
-  font-size: 2.4rem;
-  color: rgba(54, 54, 54, 0.5);
+.footer__link {
+  margin-left: 2rem;
 }
-.footer-copyright i:hover {
-  color: rgb(54, 54, 54);
-}
-.footer-copyright-links {
-  margin: auto;
-  margin-top: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  display: grid;
-  width: 20rem;
-}
-.footer-copyright #links1 {
-  grid-template-columns: 1fr;
+.footer__text {
+  font-size: 2rem;
+  padding: 1rem;
 }
 
 .form {
@@ -579,6 +580,10 @@ p, a {
   width: 70%;
   height: 100%;
   margin: auto;
+}
+.form__contact {
+  background: none;
+  margin-top: 0;
 }
 
 input[type=file]::file-selector-button {
@@ -1298,65 +1303,37 @@ input[type=file]::file-selector-button:hover {
   background: url("../img/zakaznici/zakaznici02.jpg") no-repeat center center/cover;
 }
 
-.cont-gmap {
-  background: none;
-  width: 33vw;
-  height: 30rem;
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
+.contact {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
-.cont-gmap .gmap_canvas {
-  width: 100%;
-  height: 100%;
+.contact__header {
+  margin-top: 2rem;
+  padding-bottom: 2rem;
 }
-.cont-gmap .gmap_canvas #gmap_canvas {
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
+.contact__text {
+  text-align: center;
+  display: block;
+  width: 35rem;
+  margin: auto;
+  font-size: 2rem;
+}
+.contact__text--social {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-weight: 800;
 }
 
-#address-cont {
-  background: url(../img/home03.jpg) no-repeat center center/cover;
+.gmap_canvas {
+  width: 100%;
+  height: 100%;
   position: relative;
 }
-
-.copied {
-  position: absolute;
-  background: #ffc0be;
-  padding: 1rem 2rem;
-  color: white;
-  border-radius: 1rem;
-}
-.copied-numb {
-  right: 10%;
-  top: 50%;
-}
-.copied-numb::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 50%;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: rgb(255, 192, 190);
-  left: 20%;
-  top: -25%;
-}
-.copied-mail {
-  right: 10%;
-  top: 75%;
-}
-.copied-mail::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 50%;
-  clip-path: polygon(0 0, 100% 0%, 50% 100%, 0% 0%);
-  background: rgb(255, 192, 190);
-  left: 20%;
-  top: 75%;
+.gmap_canvas #gmap_canvas {
+  width: 70%;
+  height: 70%;
+  border-radius: 2rem 85rem 124rem 100rem;
+  margin-top: 5rem;
 }
 
 /*# sourceMappingURL=style.comp.css.map */

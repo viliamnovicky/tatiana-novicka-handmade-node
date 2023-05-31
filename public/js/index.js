@@ -1,11 +1,13 @@
 import { createNewItem } from "./createNewItem";
 import { showAlert } from './alerts';
+import { createNewCategory } from "./createNewCategory";
 
 // ACTIVE NAVBAR LINK
 document.querySelectorAll(".navbar__link").forEach(link => window.location.href === link.href ? link.classList.add("active") : link.classList.remove("active"))
+
 // CREATE NEW PRODUCT
 if (document.getElementById("btn-upload-item")) {
-    const uploadItemBtn = document.getElementById("btn-upload-item")
+
     const newItemForm = document.querySelector('.form__new-item');
 
     newItemForm.addEventListener("submit", function (e) {
@@ -26,6 +28,22 @@ if (document.getElementById("btn-upload-item")) {
         }
         console.log(document.getElementById('name').value)
         createNewItem(form)
+    })
+}
+
+
+// CREATE NEW CATEGORY
+if(document.getElementById("btn-upload-category")) {
+
+    const newCategoryForm = document.querySelector(".form__new-category")
+    newCategoryForm.addEventListener("submit", function(e) {
+        e.preventDefault()
+        const form = new FormData()
+
+        form.append('name', document.getElementById('name').value)
+        form.append('coverImage', document.getElementById('coverImage').files[0])
+
+        createNewCategory(form)
     })
 }
 

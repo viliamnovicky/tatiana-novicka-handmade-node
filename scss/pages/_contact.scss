@@ -8,34 +8,31 @@
   }
 
   &__text {
-    text-align: left;
+    text-align: center;
     display: block;
     width: 35rem;
     margin: auto;
     font-size: $font-size-h4;
 
-    &--right {
-      text-align: right;
+    &--social {
+      padding-top: 2rem;
+      padding-bottom: 1rem;
+      font-weight: 800;
     }
   }
 }
 
-.cont-gmap {
-  background: none;
-  width: 33vw;
-  height: 30rem;
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
 
-  .gmap_canvas {
-    width: 100%;
-    height: 100%;
 
-    #gmap_canvas {
-      width: 100%;
-      height: 100%;
-      border-radius: 1rem;
-    }
+.gmap_canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  #gmap_canvas {
+    width: 70%;
+    height: 70%;
+    border-radius: 2rem 85rem 124rem 100rem;
+    margin-top: 5rem;
   }
 }

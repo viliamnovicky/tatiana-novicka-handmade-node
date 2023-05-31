@@ -64,3 +64,9 @@ exports.getNewItemPage = catchAsync(async (req, res, next) => {
         categories
     })
 })
+
+exports.getNewCategoryPage = catchAsync(async (req, res, next) => {
+    res.status(200).render("new-category", {
+        title: "Nová kategória"
+    })
+})

@@ -11,5 +11,6 @@ router.get("/kontakt", viewsController.getContactPage)
 router.get("/novy-produkt", viewsController.getNewItemPage)
 router.get("/produkty/:category", viewsController.getCategoryPage)
 router.get("/produkty/:category/:id", viewsController.getProductPage)
+router.get("/nova-kategoria", viewsController.getNewCategoryPage)
 
 module.exports = router

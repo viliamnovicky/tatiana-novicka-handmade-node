@@ -74,8 +74,9 @@
 
     &__contact-blob {
         @include absolute-center;
+        top: 52%;
         z-index: -1;
-        width: 50%;
+        width: 45%;
     }
 
     &__category {
@@ -100,5 +101,9 @@
         border-radius: 1rem;
         pointer-events: all;
         cursor: pointer;
+    }
+    &__social {
+        width: 3rem;
+        filter: invert(18%) sepia(0%) saturate(1350%) hue-rotate(183deg) brightness(95%) contrast(87%);
     }
 }

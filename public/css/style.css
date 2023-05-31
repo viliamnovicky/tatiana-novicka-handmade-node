@@ -395,8 +395,9 @@ p, a {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  top: 52%;
   z-index: -1;
-  width: 50%;
+  width: 45%;
 }
 .img__category {
   width: 100%;
@@ -421,6 +422,10 @@ p, a {
   border-radius: 1rem;
   pointer-events: all;
   cursor: pointer;
+}
+.img__social {
+  width: 3rem;
+  filter: invert(18%) sepia(0%) saturate(1350%) hue-rotate(183deg) brightness(95%) contrast(87%);
 }
 
 /* The container must be positioned relative: */
@@ -513,27 +518,15 @@ p, a {
   bottom: 0;
   z-index: 10;
 }
-.footer-copyright p {
+.footer__cont {
   margin: auto;
-  text-align: center;
-  display: inline;
 }
-.footer-copyright i {
-  font-size: 2.4rem;
-  color: rgba(54, 54, 54, 0.5);
+.footer__link {
+  margin-left: 2rem;
 }
-.footer-copyright i:hover {
-  color: rgb(54, 54, 54);
-}
-.footer-copyright-links {
-  margin: auto;
-  margin-top: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  display: grid;
-  width: 20rem;
-}
-.footer-copyright #links1 {
-  grid-template-columns: 1fr;
+.footer__text {
+  font-size: 2rem;
+  padding: 1rem;
 }
 
 .form {
@@ -1319,32 +1312,28 @@ input[type=file]::file-selector-button:hover {
   padding-bottom: 2rem;
 }
 .contact__text {
-  text-align: left;
+  text-align: center;
   display: block;
   width: 35rem;
   margin: auto;
   font-size: 2rem;
 }
-.contact__text--right {
-  text-align: right;
+.contact__text--social {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-weight: 800;
 }
 
-.cont-gmap {
-  background: none;
-  width: 33vw;
-  height: 30rem;
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
-}
-.cont-gmap .gmap_canvas {
+.gmap_canvas {
   width: 100%;
   height: 100%;
+  position: relative;
 }
-.cont-gmap .gmap_canvas #gmap_canvas {
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
+.gmap_canvas #gmap_canvas {
+  width: 70%;
+  height: 70%;
+  border-radius: 2rem 85rem 124rem 100rem;
+  margin-top: 5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
