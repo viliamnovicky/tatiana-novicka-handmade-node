@@ -57,6 +57,17 @@ exports.getProductPage = catchAsync(async (req, res, next) => {
     })
 })
 
+exports.getAdminPage = catchAsync(async(req, res, next) => {
+    const categories = await Category.find()
+    const products = await Product.find().sort("name")
+
+    res.status(200).render("admin", {
+        title: "admin",
+        categories,
+        products
+    })
+})
+
 exports.getNewItemPage = catchAsync(async (req, res, next) => {
     const categories = await Category.find()
     res.status(200).render("new-item", {

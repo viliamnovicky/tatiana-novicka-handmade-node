@@ -1,0 +1,32 @@
+extends base
+
+block content
+
+    main.main.main__admin
+        h1.form__header Admin
+    .admin 
+        .admin__group
+            h2.title__header Kategórie
+            br
+            br
+            a.btn.btn__second(href="/nova-kategoria") pridať
+            .admin__cont 
+                each category in categories 
+                    .admin__item 
+                        img.img.img__admin-item(src=`/img/categories/${category.coverImage}`)
+                        h3.title__header=category.name
+                        btn.btn.btn__second#update-category upraviť
+                        btn.btn.btn__second#delete-category vymazať
+        
+        .admin__group   
+            h2.title__header Produkty 
+            br
+            br
+            a.btn.btn__second(href="/novy-produkt") pridať 
+            .admin__cont 
+                each product in products 
+                    .admin__item 
+                        img.img.img__admin-item(src=`/img/products/${product.coverImage}`)
+                        h3.title__header=product.name
+                        btn.btn.btn__second#update-category upraviť
+                        btn.btn.btn__second#delete-category vymazať

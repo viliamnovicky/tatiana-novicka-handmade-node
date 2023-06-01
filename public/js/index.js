@@ -1,9 +1,23 @@
 import { createNewItem } from "./createNewItem";
 import { showAlert } from './alerts';
 import { createNewCategory } from "./createNewCategory";
+import { closeModal, showModal } from "./helpers";
+import { createModalLoginMarkup } from "./markups";
 
 // ACTIVE NAVBAR LINK
 document.querySelectorAll(".navbar__link").forEach(link => window.location.href === link.href ? link.classList.add("active") : link.classList.remove("active"))
+
+// CLOSE MODAL
+document.querySelector(".btn__close").addEventListener("click", closeModal)
+
+//LOGIN
+if(document.querySelector(".btn__login")) {
+    document.querySelector(".btn__login").addEventListener("click", (e) => {
+        e.preventDefault()
+        showModal()
+        createModalLoginMarkup()
+    })
+}
 
 // CREATE NEW PRODUCT
 if (document.getElementById("btn-upload-item")) {

@@ -1,4 +1,10 @@
 footer.footer
+    if admin
+        button.btn.btn__second.btn__logout
+            img.img.img__login(src="/img/logout.svg")
+    else 
+        button.btn.btn__second.btn__login
+            img.img.img__login(src="/img/login.svg")
     .footer__cont
         p.footer__text=`© Tatiana Novická ${new Date().getFullYear()}`
         a.footer__link(href='https://www.facebook.com/TatiJanaN-handmade-249652415190403' target='_blank')

@@ -32,7 +32,7 @@
     margin: 0;
     font-family: 'Quicksand', sans-serif;
     transition: all 0.5s;
-    @include link-style($dark-color);
+    @include link-style($color-dark);
 }
 
 html {
@@ -75,12 +75,12 @@ p, a {
 }
 
 ::selection {
-    color: $dark-color;
+    color: $color-dark;
     background: $main-color;
   }
 
 .active {
-    border-bottom: 3px solid $second-color !important;
+    border-bottom: 3px solid $color-secondary !important;
     backface-visibility: hidden;
 }
 
@@ -118,7 +118,7 @@ p, a {
 
 //     summary {
 //         display: inline-block;
-//         background: $dark-color;
+//         background: $color-dark;
 //         color: white;
 //         cursor: pointer;
 //         width: 20rem;

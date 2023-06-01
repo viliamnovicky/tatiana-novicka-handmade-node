@@ -11,7 +11,7 @@
     text-align: center;
     align-items: center;
     margin: auto;
-    border-bottom: 1px solid $color-white;
+    border-bottom: 2px solid $color-white;
 
     @include respond(tab-port) {
         grid-template-columns: 1fr;

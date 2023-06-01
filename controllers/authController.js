@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
-//const User = require('./../models/userModel');
+const Admin = require('./../models/adminModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const Email = require('./../utils/email');
@@ -12,8 +12,8 @@ const signToken = id => {
   });
 };
 
-const createSendToken = (user, statusCode, req, res) => {
-  const token = signToken(user._id);
+const createSendToken = (admin, statusCode, req, res) => {
+  const token = signToken(admin._id);
 
   res.cookie('jwt', token, {
     expires: new Date(
@@ -24,53 +24,48 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 
   // Remove password from output
-  user.password = undefined;
+  admin.password = undefined;
 
   res.status(statusCode).json({
     status: 'success',
     token,
     data: {
-      user
+      admin
     }
   });
 };
 
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
+  const newAdmin = await Admin.create({
     name: req.body.name,
-    email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm
   });
-
-  const url = `${req.protocol}://${req.get('host')}/registracia`;
-  console.log(url);
-  await new Email(newUser, url).sendRegisterConfirm();
 
   res.status(200).json({
     status: "success"
   })
 
-  //createSendToken(newUser, 201, req, res);
+  createSendToken(newAdmin, 201, req, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { name, password } = req.body;
 
   // 1) Check if email and password exist
-  if (!email || !password) {
+  if (!name || !password) {
     return next(new AppError('Prosím, zadajte meno a heslo!', 400));
   }
-  // 2) Check if user exists && password is correct
-  const user = await User.findOne({ email }).select('+password');
+  // 2) Check if admin exists && password is correct
+  const admin = await Admin.findOne({ name }).select('+password');
 
-  if (!user || !(await user.correctPassword(password, user.password))) {
+  if (!admin || !(await admin.correctPassword(password, admin.password))) {
     return next(new AppError('Nesprávne meno alebo heslo', 401));
   }
 
   // 3) If everything ok, send token to client
-  createSendToken(user, 200, req, res);
+  createSendToken(admin, 200, req, res);
 });
 
 exports.logout = (req, res) => {
@@ -102,9 +97,9 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-  // 3) Check if user still exists
-  const currentUser = await User.findById(decoded.id);
-  if (!currentUser) {
+  // 3) Check if admin still exists
+  const currentAdmin = await Admin.findById(decoded.id);
+  if (!currentAdmin) {
     return next(
       new AppError(
         'Užívateľ neexistuje.',
@@ -113,16 +108,16 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
   }
 
-  // 4) Check if user changed password after the token was issued
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
+  // 4) Check if admin changed password after the token was issued
+  if (currentAdmin.changedPasswordAfter(decoded.iat)) {
     return next(
       new AppError('Užívateľ si nedávno zmenil heslo! Prosím, prihláste sa znova.', 401)
     );
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE
-  req.user = currentUser;
-  res.locals.user = currentUser;
+  req.admin = currentAdmin;
+  res.locals.admin = currentAdmin;
   next();
 });
 
@@ -136,20 +131,19 @@ exports.isLoggedIn = async (req, res, next) => {
         process.env.JWT_SECRET
       );
 
-      // 2) Check if user still exists
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) {
+      // 2) Check if admin still exists
+      const currentAdmin = await Admin.findById(decoded.id);
+      if (!currentAdmin) {
         return next();
       }
 
-      // 3) Check if user changed password after the token was issued
-      if (currentUser.changedPasswordAfter(decoded.iat)) {
+      // 3) Check if Admin changed password after the token was issued
+      if (currentAdmin.changedPasswordAfter(decoded.iat)) {
         return next();
       }
 
-      // THERE IS A LOGGED IN USER
-      res.locals.user = currentUser;
-      console.log(currentUser);
+      // THERE IS A LOGGED IN admin
+      res.locals.admin = currentAdmin;
       return next();
     } catch (err) {
       return next();
@@ -158,45 +152,32 @@ exports.isLoggedIn = async (req, res, next) => {
   next();
 };
 
-exports.restrictTo = (...roles) => {
-  return (req, res, next) => {
-    // roles ['admin']
-    if (!roles.includes(req.user.role)) {
-      return next(
-        new AppError('Nemáte povolenie vykonať túto akciu', 403)
-      );
-    }
-
-    next();
-  };
-};
-
 exports.forgotPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on POSTed email
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
+  // 1) Get admin based on POSTed email
+  const admin = await Admin.findOne({ email: req.body.email });
+  if (!admin) {
     return next(new AppError('Užívateľ s touto emailovou adresou neexistuje.', 404));
   }
 
   // 2) Generate the random reset token
-  const resetToken = user.createPasswordResetToken();
-  await user.save({ validateBeforeSave: false });
+  const resetToken = admin.createPasswordResetToken();
+  await admin.save({ validateBeforeSave: false });
 
-  // 3) Send it to user's email
+  // 3) Send it to admin's email
   try {
     const resetURL = `${req.protocol}://${req.get(
       'host'
-    )}/api/v1/users/resetPassword/${resetToken}`;
-    await new Email(user, resetURL).sendPasswordReset();
+    )}/api/v1/admins/resetPassword/${resetToken}`;
+    await new Email(admin, resetURL).sendPasswordReset();
 
     res.status(200).json({
       status: 'success',
       message: 'Token bol odoslaný na email!'
     });
   } catch (err) {
-    user.passwordResetToken = undefined;
-    user.passwordResetExpires = undefined;
-    await user.save({ validateBeforeSave: false });
+    admin.passwordResetToken = undefined;
+    admin.passwordResetExpires = undefined;
+    await admin.save({ validateBeforeSave: false });
 
     return next(
       new AppError('Pri odosielaní emailu nastala chyba. Skúste to prosím znova.'),
@@ -206,50 +187,50 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 });
 
 exports.resetPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on the token
+  // 1) Get admin based on the token
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
 
-  const user = await User.findOne({
+  const admin = await Admin.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() }
   });
 
-  // 2) If token has not expired, and there is user, set the new password
-  if (!user) {
+  // 2) If token has not expired, and there is admin, set the new password
+  if (!admin) {
     return next(new AppError('Token je neplatný.', 400));
   }
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  user.passwordResetToken = undefined;
-  user.passwordResetExpires = undefined;
-  await user.save();
+  admin.password = req.body.password;
+  admin.passwordConfirm = req.body.passwordConfirm;
+  admin.passwordResetToken = undefined;
+  admin.passwordResetExpires = undefined;
+  await admin.save();
 
-  // 3) Update changedPasswordAt property for the user
-  // 4) Log the user in, send JWT
-  createSendToken(user, 200, req, res);
+  // 3) Update changedPasswordAt property for the admin
+  // 4) Log the admin in, send JWT
+  createSendToken(admin, 200, req, res);
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
-  // 1) Get user from collection
-  const user = await User.findById(req.user.id).select('+password');
+  // 1) Get admin from collection
+  const admin = await Admin.findById(req.admin.id).select('+password');
 
   // 2. Check if POSTed current password is correct
   if (
-    !user ||
-    !(await user.correctPassword(req.body.passwordCurrent, user.password))
+    !admin ||
+    !(await admin.correctPassword(req.body.passwordCurrent, admin.password))
   ) {
     return next(new AppError('Zadali ste zlé aktuálne heslo', 400));
   }
 
   // 3) If so, update password
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
-  await user.save();
-  // User.findByIdAndUpdate will NOT work as intended!
+  admin.password = req.body.password;
+  admin.passwordConfirm = req.body.passwordConfirm;
+  await admin.save();
+  // admin.findByIdAndUpdate will NOT work as intended!
 
-  // 4) Log user in, send JWT
-  createSendToken(user, 200, req, res);
+  // 4) Log admin in, send JWT
+  createSendToken(admin, 200, req, res);
 });

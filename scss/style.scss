@@ -11,12 +11,12 @@
 @import 'components/cover';
 @import 'components/dropdown';
 @import 'components/gallery';
-@import 'components/modal';
 @import 'components/spinner';
 @import 'components/images';
 @import 'components/options';
 @import 'components/title';
 
+@import 'layout/modal';
 @import 'layout/footer';
 @import 'layout/forms';
 @import 'layout/grid';
@@ -31,3 +31,4 @@
 @import 'pages/products';
 @import 'pages/costumers';
 @import 'pages/contact';
+@import 'pages/admin';

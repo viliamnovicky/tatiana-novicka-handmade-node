@@ -51,7 +51,6 @@
 
     &__new-item {
         height: calc(100vh - 35rem);
-        height: 145rem;
         width: 100vw;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -59,6 +58,7 @@
 
         @include respond(tab-land) {
             grid-template-columns: 1fr;
+            height: 145rem;
         }
     }
 
@@ -83,13 +83,20 @@
         background: none;
         margin-top: 0;
     }
+
+    &__login {
+        @include absolute-center;
+        height: 32rem;
+        background: none;
+        width: 30rem;
+    }
 }
 
 input[type=file]::file-selector-button {
     margin-right: 2rem;
-    border: 1px solid $second-color;
+    border: 1px solid $color-secondary;
     background: $color-white;
-    color: $second-color;
+    color: $color-secondary;
     padding: 1rem 2rem;
     border-radius: 1rem;
     cursor: pointer;
@@ -103,7 +110,7 @@ input[type=file]::file-selector-button {
 }
 
 input[type=file]::file-selector-button:hover {
-    background: $second-color;
+    background: $color-secondary;
     color: white;
     font-size: $font-size-p;
 }

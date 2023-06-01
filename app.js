@@ -14,6 +14,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const viewRouter = require('./routes/viewRoutes');
 const productsRouter = require("./routes/productRoutes")
 const categoriesRouter = require("./routes/categoryRoutes")
+const adminRouter = require("./routes/adminRoutes")
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/categories', categoriesRouter);
+app.use('/api/v1/admin', adminRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Adresu ${req.originalUrl} sa nepodarilo nájsť.`, 404));

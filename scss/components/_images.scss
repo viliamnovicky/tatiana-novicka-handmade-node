@@ -83,7 +83,7 @@
         width: 100%;
         border-radius: 1rem;
         @include absolute-center;
-        box-shadow: 0 0.2rem 2rem $dark-color;
+        box-shadow: 0 0.2rem 2rem $color-dark;
         border: 1rem solid white;
     }
 
@@ -102,8 +102,20 @@
         pointer-events: all;
         cursor: pointer;
     }
+
     &__social {
         width: 3rem;
         filter: invert(18%) sepia(0%) saturate(1350%) hue-rotate(183deg) brightness(95%) contrast(87%);
+    }
+
+    &__admin-item {
+        height: 8rem;
+        margin-left: 2rem;
+        border-radius: 1rem;
+    }
+
+    &__login {
+        width: 100%;
+        filter: invert(79%) sepia(8%) saturate(1300%) hue-rotate(312deg) brightness(96%) contrast(122%);
     }
 }
