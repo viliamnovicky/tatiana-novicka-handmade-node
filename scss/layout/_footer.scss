@@ -12,6 +12,12 @@
     bottom: 0;
     z-index: 10;
 
+    @include respond(tab-land) {
+        grid-template-columns: 1fr;
+        position: relative;
+        height: 19rem;
+    }
+
     &__cont {
         margin: auto;
     }
@@ -22,6 +28,10 @@
 
     &__text {
         font-size: $font-size-h4;
-        padding: 1rem
+        padding: 1rem;
+
+        @include respond(tab-land) {
+            font-size: $font-size-p;
+        }
     }
 }

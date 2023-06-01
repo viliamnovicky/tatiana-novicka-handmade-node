@@ -6,6 +6,10 @@
     margin: auto;
     margin-bottom: 5rem;
 
+    @include respond(tab-land) {
+      width: 95vw;
+  }
+
     select {
         display: none; /*hide original SELECT element: */
       }
@@ -42,6 +46,11 @@
     cursor: pointer;
     color: black;
     font-size: $font-size-h4;
+
+    @include respond(tab-land) {
+      width: 95vw;
+      font-size: $font-size-p;
+  }
   }
   
   /* Style items (options): */

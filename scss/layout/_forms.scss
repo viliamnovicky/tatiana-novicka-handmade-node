@@ -7,6 +7,10 @@
     border-radius: 1rem;
     padding-top: 5rem;
 
+    @include respond(tab-land) {
+        width: 100vw;
+    }
+
     &-cont {
         background: url(../img/ihla.png) no-repeat center center/cover
     }
@@ -21,6 +25,10 @@
         font-size: $font-size-h4;
         margin-bottom: 1rem;
         display: block;
+
+        @include respond(tab-land) {
+            font-size: $font-size-p;
+        }
     }
 
     input,
@@ -34,14 +42,24 @@
         border: none;
         border-radius: 1rem;
         resize: none;
+
+        @include respond(tab-land) {
+            width: 95vw;
+            font-size: $font-size-p;
+        }
     }
 
     &__new-item {
         height: calc(100vh - 35rem);
-        width: 98vw;
+        height: 145rem;
+        width: 100vw;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         background: rgba($main-color-transp, .5);
+
+        @include respond(tab-land) {
+            grid-template-columns: 1fr;
+        }
     }
 
     &__header {
@@ -55,6 +73,10 @@
         width: 70%;
         height: 100%;
         margin: auto;
+
+        @include respond(tab-land) {
+            width: 100%
+        }
     }
 
     &__contact {
@@ -63,26 +85,25 @@
     }
 }
 
-// input[type=file] {
-//     width: 90%;
-//     color: black;
-//     padding: 1rem;
-//     background: white;
-//     border-radius: 1rem;
-// }
-
 input[type=file]::file-selector-button {
     margin-right: 2rem;
     border: 1px solid $second-color;
-    background: white;
+    background: $color-white;
     color: $second-color;
     padding: 1rem 2rem;
     border-radius: 1rem;
     cursor: pointer;
     transition: background .2s ease-in-out;
+
+    @include respond(tab-land) {
+        width: 14rem;
+        height: 3.8rem;
+        font-size: $font-size-p;
+    }
 }
 
 input[type=file]::file-selector-button:hover {
     background: $second-color;
     color: white;
+    font-size: $font-size-p;
 }

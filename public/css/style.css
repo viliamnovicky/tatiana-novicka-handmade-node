@@ -173,6 +173,13 @@ p, a {
   font-weight: 800;
   text-transform: uppercase;
 }
+@media only screen and (max-width: 75em) {
+  .btn {
+    width: 12rem;
+    height: 3.8rem;
+    font-size: 1.6rem;
+  }
+}
 .btn:hover {
   box-shadow: 0 0.3rem 2rem rgba(54, 54, 54, 0.3);
 }
@@ -436,6 +443,11 @@ p, a {
   margin: auto;
   margin-bottom: 5rem;
 }
+@media only screen and (max-width: 75em) {
+  .select {
+    width: 95vw;
+  }
+}
 .select select {
   display: none; /*hide original SELECT element: */
 }
@@ -471,6 +483,12 @@ p, a {
   cursor: pointer;
   color: black;
   font-size: 2rem;
+}
+@media only screen and (max-width: 75em) {
+  .select-items div, .select-selected {
+    width: 95vw;
+    font-size: 1.6rem;
+  }
 }
 
 /* Style items (options): */
@@ -518,6 +536,13 @@ p, a {
   bottom: 0;
   z-index: 10;
 }
+@media only screen and (max-width: 75em) {
+  .footer {
+    grid-template-columns: 1fr;
+    position: relative;
+    height: 19rem;
+  }
+}
 .footer__cont {
   margin: auto;
 }
@@ -528,6 +553,11 @@ p, a {
   font-size: 2rem;
   padding: 1rem;
 }
+@media only screen and (max-width: 75em) {
+  .footer__text {
+    font-size: 1.6rem;
+  }
+}
 
 .form {
   width: 50rem;
@@ -537,6 +567,11 @@ p, a {
   margin-top: 2rem;
   border-radius: 1rem;
   padding-top: 5rem;
+}
+@media only screen and (max-width: 75em) {
+  .form {
+    width: 100vw;
+  }
 }
 .form-cont {
   background: url(../img/ihla.png) no-repeat center center/cover;
@@ -551,6 +586,11 @@ p, a {
   margin-bottom: 1rem;
   display: block;
 }
+@media only screen and (max-width: 75em) {
+  .form label {
+    font-size: 1.6rem;
+  }
+}
 .form input,
 .form textarea {
   width: 90%;
@@ -563,12 +603,25 @@ p, a {
   border-radius: 1rem;
   resize: none;
 }
+@media only screen and (max-width: 75em) {
+  .form input,
+  .form textarea {
+    width: 95vw;
+    font-size: 1.6rem;
+  }
+}
 .form__new-item {
   height: calc(100vh - 35rem);
-  width: 98vw;
+  height: 145rem;
+  width: 100vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background: rgba(180, 255, 255, 0.5);
+}
+@media only screen and (max-width: 75em) {
+  .form__new-item {
+    grid-template-columns: 1fr;
+  }
 }
 .form__header {
   font-family: "Dancing Script", cursive;
@@ -580,6 +633,11 @@ p, a {
   width: 70%;
   height: 100%;
   margin: auto;
+}
+@media only screen and (max-width: 75em) {
+  .form__group {
+    width: 100%;
+  }
 }
 .form__contact {
   background: none;
@@ -596,10 +654,18 @@ input[type=file]::file-selector-button {
   cursor: pointer;
   transition: background 0.2s ease-in-out;
 }
+@media only screen and (max-width: 75em) {
+  input[type=file]::file-selector-button {
+    width: 14rem;
+    height: 3.8rem;
+    font-size: 1.6rem;
+  }
+}
 
 input[type=file]::file-selector-button:hover {
   background: rgb(255, 192, 190);
   color: white;
+  font-size: 1.6rem;
 }
 
 .cont-grid-1x {
@@ -759,6 +825,15 @@ input[type=file]::file-selector-button:hover {
 @media only screen and (max-width: 56.25em) {
   .header {
     grid-template-columns: 1fr;
+    width: 100vw;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .header__logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 .header__logo--h1 {
@@ -778,6 +853,12 @@ input[type=file]::file-selector-button:hover {
 @media only screen and (max-width: 56.25em) {
   .header__logo--h1 {
     font-size: 6rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .header__logo--h1 {
+    font-size: 4rem;
+    margin: auto;
   }
 }
 .header__logo--h3 {
@@ -808,6 +889,13 @@ input[type=file]::file-selector-button:hover {
     padding-left: 3.3rem;
   }
 }
+@media only screen and (max-width: 37.5em) {
+  .header__logo--h3 {
+    font-size: 1.6rem;
+    letter-spacing: 2rem;
+    padding-left: 2rem;
+  }
+}
 
 .navbar {
   margin: auto;
@@ -819,20 +907,7 @@ input[type=file]::file-selector-button:hover {
 @media only screen and (max-width: 56.25em) {
   .navbar {
     grid-template-columns: 1fr;
-  }
-}
-@media only screen and (max-width: 56.25em) {
-  .navbar {
-    margin-top: 15rem;
-    background: rgba(54, 54, 54, 0.8);
-    padding-top: 80rem;
-    padding-bottom: 50rem;
-    padding-left: 15rem;
-    padding-right: 15rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    visibility: hidden;
   }
 }
 .navbar__link {
@@ -853,16 +928,6 @@ input[type=file]::file-selector-button:hover {
   .navbar__link {
     width: 15rem;
     font-size: 1.6rem;
-  }
-}
-@media only screen and (max-width: 56.25em) {
-  .navbar__link {
-    margin-top: 5rem;
-    width: 70vw;
-    font-size: 3rem;
-    color: white;
-    background: rgba(180, 255, 255, 0.7);
-    border-radius: 1rem;
   }
 }
 .navbar__link:hover {

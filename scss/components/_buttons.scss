@@ -12,6 +12,12 @@
     font-weight: 800;
     text-transform: uppercase;
 
+    @include respond(tab-land) {
+        width: 12rem;
+        height: 3.8rem;
+        font-size: $font-size-p;
+    }
+
     &:hover {
         box-shadow: 0 .3rem 2rem rgba($dark-color, 0.3);
     }
