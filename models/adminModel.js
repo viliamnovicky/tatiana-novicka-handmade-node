@@ -21,18 +21,7 @@ const adminSchema = new mongoose.Schema({
     },
     passwordResetToken: String,
     passwordResetExpires: Date,
-    active: {
-        type: Boolean,
-        default: true,
-        select: false,
-    },
 })
-
-adminSchema.pre(/^find/, function (next) {
-    // this points to current query
-    this.find({ active: { $ne: false } }); // active != false
-    next();
-});
 
 adminSchema.pre('save', async function (next) {
     // only runs if password was modified

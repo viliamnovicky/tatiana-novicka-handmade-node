@@ -31,7 +31,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Quicksand', sans-serif;
-    transition: all 0.5s;
+    transition: all 0.2s;
     @include link-style($color-dark);
 }
 
@@ -95,12 +95,6 @@ p, a {
 .hidden {
     opacity: 0 !important;
     visibility: hidden !important;
-    height: 0 !important;
-    border-bottom: 0 !important;
-    grid-gap: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    position: fixed !important;
 }
 
 .modal-hidden {

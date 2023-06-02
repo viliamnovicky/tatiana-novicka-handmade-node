@@ -40,7 +40,8 @@ exports.getCategoryPage = catchAsync(async (req, res, next) => {
 
     res.status(200).render("category", {
         title: req.params.category,
-        category
+        category,
+        currentUrl: "products"
     })
 })
 
@@ -53,11 +54,12 @@ exports.getProductPage = catchAsync(async (req, res, next) => {
 
     res.status(200).render("product", {
         title: product.name,
-        product
+        product,
+        currentUrl: "product"
     })
 })
 
-exports.getAdminPage = catchAsync(async(req, res, next) => {
+exports.getAdminPage = catchAsync(async (req, res, next) => {
     const categories = await Category.find()
     const products = await Product.find().sort("name")
 
@@ -73,6 +75,17 @@ exports.getNewItemPage = catchAsync(async (req, res, next) => {
     res.status(200).render("new-item", {
         title: "Nový produkt",
         categories
+    })
+})
+
+exports.getUpdateItemPage = catchAsync(async (req, res, next) => {
+    const categories = await Category.find()
+    const product = await Product.findOne({ _id: req.params.id })
+    res.status(200).render("update-item", {
+        title: "Upraviť produkt",
+        currentUrl: "update-product",
+        categories,
+        product
     })
 })
 

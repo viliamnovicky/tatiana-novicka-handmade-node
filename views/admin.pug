@@ -15,8 +15,8 @@ block content
                     .admin__item 
                         img.img.img__admin-item(src=`/img/categories/${category.coverImage}`)
                         h3.title__header=category.name
-                        btn.btn.btn__second#update-category upraviť
-                        btn.btn.btn__second#delete-category vymazať
+                        btn.btn.btn__second.update__category(id=`${category.id}`) upraviť
+                        btn.btn.btn__second.delete__category(id=`${category.id}`) vymazať
         
         .admin__group   
             h2.title__header Produkty 
@@ -28,5 +28,5 @@ block content
                     .admin__item 
                         img.img.img__admin-item(src=`/img/products/${product.coverImage}`)
                         h3.title__header=product.name
-                        btn.btn.btn__second#update-category upraviť
-                        btn.btn.btn__second#delete-category vymazať
+                        a.btn.btn__second.update__product(href=`/upravit-produkt/${product.id}`) upraviť
+                        btn.btn.btn__second.delete__product(id=`${product.id}`) vymazať

@@ -1,8 +1,11 @@
-import { createNewItem } from "./createNewItem";
+import { createNewProduct, updateProduct} from "./handleProducts";
 import { showAlert } from './alerts';
 import { createNewCategory } from "./createNewCategory";
 import { closeModal, showModal } from "./helpers";
 import { createModalLoginMarkup } from "./markups";
+import { login, logout } from "./auth";
+
+const modal = document.querySelector(".modal__dynamic")
 
 // ACTIVE NAVBAR LINK
 document.querySelectorAll(".navbar__link").forEach(link => window.location.href === link.href ? link.classList.add("active") : link.classList.remove("active"))
@@ -16,6 +19,24 @@ if(document.querySelector(".btn__login")) {
         e.preventDefault()
         showModal()
         createModalLoginMarkup()
+    })
+}
+
+modal.addEventListener("click", function(e) {
+    e.preventDefault()
+    if(e.target.closest("#login-btn")) {
+        const name = document.getElementById("name").value
+        const password = document.getElementById("password").value
+        login(name, password)
+    }
+
+})
+
+//LOGOUT
+if(document.querySelector(".btn__logout")) {
+    document.querySelector(".btn__logout").addEventListener("click", (e) => {
+        e.preventDefault()
+        logout()
     })
 }
 
@@ -41,10 +62,36 @@ if (document.getElementById("btn-upload-item")) {
             form.append("productImages", document.getElementById('productImages').files[x]);
         }
         console.log(document.getElementById('name').value)
-        createNewItem(form)
+        createNewProduct(form)
     })
 }
 
+// UPDATE PRODUCT
+if (document.getElementById("btn-update-product")) {
+    const id = document.querySelector('.form__new-item').id
+    const productForm = document.querySelector('.form__new-item');
+
+    productForm.addEventListener("submit", function(e) {
+        e.preventDefault()
+        const form = new FormData()
+
+        form.append("name", document.getElementById('name').value)
+        form.append("price", document.getElementById('price').value)
+        form.append("category", document.getElementById('category').value)
+        form.append("availability", document.getElementById('availability').value)
+        form.append("description", document.getElementById('description').innerHTML)
+        
+        if(document.getElementById('coverImage').files[0])
+            form.append('coverImage', document.getElementById('coverImage').files[0]);
+        
+        const i = document.getElementById('productImages').files.length;
+        for (let x = 0; x < i; x++) {
+            form.append("productImages", document.getElementById('productImages').files[x]);
+        }
+        
+        updateProduct(id, form)
+    })
+}
 
 // CREATE NEW CATEGORY
 if(document.getElementById("btn-upload-category")) {

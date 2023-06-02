@@ -1,0 +1,38 @@
+extends base
+
+block content
+
+    main.main.main__new-item 
+        h1.form__header Nový produkt
+        form.form.form__new-item(id=`${product.id}`)
+            .form__group 
+                label.form__label(for="name") Názov produktu
+                input.form__input(type="text" id="name" required value=`${product.name}`)
+                label.form__label(for="price") Cena
+                input.form__input(type="number" id="price" required value=`${product.price}`)
+                label.form__label(for="category") Kategória
+                .select
+                    select.form__input(id="category" required)
+                        option(value=`${product.category}`)=product.category
+                        each category in categories
+                            option(value=`${category.name}`)=category.name
+                label.form__label(for="availability") Dostupnosť
+                .select
+                    select.form__input(type="text" id="availability" required)
+                        option(value=`${product.availability}`)=product.availability
+                        option(value="skladom") skladom
+                        option(value="na objednávku") na objednávku
+                        option(value="nedostupné") nedostupné
+            .form__group 
+                label.form__label(for="description") Popis produktu
+                textarea#description(name="description", cols="40", rows="16" value=`${product.description}`)=product.description 
+            .form__group
+                label.form__label(for="coverImage") Vyberte titulnú fotografiu
+                input(type="file" id="coverImage")
+                label.form__label(for="productImages") Ďalšie fotografie
+                input(type="file" id="productImages" multiple)
+                label.form__label(for="#btn-update-product") Uloženie nového produktu
+                button.btn.btn__second#btn-update-product uložiť
+    script(src="./../js/customOptions.js") 
+
+

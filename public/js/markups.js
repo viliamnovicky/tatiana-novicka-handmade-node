@@ -6,13 +6,13 @@ export const createModalLoginMarkup = () => {
     modalStatic.classList.add("modal__small")
     modalDynamic.insertAdjacentHTML("beforeend", `
     <h3 class="title__header">Prihlásenie</h3>
-    <img class = "img img__contact-blob" src="/img/contact-blob.png"></img>
+    <img class = "img img__login-blob" src="/img/blob-login.svg"></img>
     <form class = "form form__login">
         <label for="name">meno</label>
         <input id="name" type="text" name="name">
         <label for="password">heslo</label>
         <input id="password" type="password" name="password">
-        <button class="btn btn__primary">prihlásiť</button>
+        <button class="btn btn__primary" id="login-btn">prihlásiť</button>
     </form>
     `)
 }

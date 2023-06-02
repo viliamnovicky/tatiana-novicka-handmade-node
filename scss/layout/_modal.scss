@@ -29,9 +29,12 @@
         margin-top: 5rem;
        } 
 
-       .img__contact-blob {
+       .img__login-blob {
+        @include absolute-center;
         height: 120%;
         width: 80%;
+        opacity: .5;
+        z-index: -1;
        }
     }
 
