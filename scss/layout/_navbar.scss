@@ -48,7 +48,7 @@
         // }
 
         &:hover {
-            background: $light-color-transp;
+            background: rgba($color-light, .5);
             border-radius: 25px;
 
             @include respond(tab-port) {

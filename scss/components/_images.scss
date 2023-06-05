@@ -72,12 +72,12 @@
         bottom: 0;
     }
 
-    &__contact-blob {
-        @include absolute-center;
-        top: 52%;
-        z-index: -1;
-        width: 45%;
-    }
+    // &__contact-blob {
+    //     @include absolute-center;
+    //     top: 40%;
+    //     z-index: -10;
+    //     height: 120%;
+    // }
 
     &__category {
         width: 100%;

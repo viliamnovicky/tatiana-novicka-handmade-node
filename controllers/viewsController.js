@@ -17,7 +17,8 @@ exports.getCustomersPage = catchAsync(async (req, res, next) => {
 
 exports.getContactPage = catchAsync(async (req, res, next) => {
     res.status(200).render("contact", {
-        title: "Kontakt"
+        title: "Kontakt",
+        currentUrl: "contact"
     })
 })
 

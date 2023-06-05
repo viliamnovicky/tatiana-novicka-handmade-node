@@ -1,5 +1,9 @@
 extends base
 
+block append head
+  script(src=src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet')
+
 block content
 
     main.main.main__contact
@@ -7,12 +11,6 @@ block content
             h1.title__header Máte želanie? Kontaktujte ma.
     .contact
         .contact__cont
-            .gmap_canvas
-                //img.img__map-blob(src="/img/map-blob.png")
-                iframe#gmap_canvas(src='https://maps.google.com/maps?q=Turany%20nad%20Ondavou%2054&t=&z=13&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
-        
-        .contact__cont
-            img.img.img__contact-blob(src="/img/contact-blob.png")
             form.form.form__contact
                 label(for='name') meno
                 input#name(type='text' name='name')
@@ -25,6 +23,9 @@ block content
 
                 button.btn.btn__second#send-message Odoslať
 
+        .contact__map
+            #map
+        
         .contact__cont
             h2.title__header.contact__header Adresa 
             p.contact__text Turany nad Ondavou 54
@@ -36,5 +37,3 @@ block content
             a.btn.btn__second(href='https://www.facebook.com/TatiJanaN-handmade-249652415190403' target='_blank') správa
             p.contact__text.contact__text--social instagram
             a.btn.btn__second(href='https://www.instagram.com/tatiananovicka/' target='_blank') správa
-
-        

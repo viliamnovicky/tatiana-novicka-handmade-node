@@ -4,6 +4,10 @@ import { createNewCategory } from "./createNewCategory";
 import { closeModal, showModal } from "./helpers";
 import { createModalLoginMarkup } from "./markups";
 import { login, logout } from "./auth";
+import { displayMap } from "./mapbox";
+
+if (document.querySelector("#map"))
+    displayMap()
 
 const modal = document.querySelector(".modal__dynamic")
 
