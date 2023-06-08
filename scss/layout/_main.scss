@@ -1,4 +1,10 @@
 .main {
     animation: goUp .5s;
     background: $color-light;
+    height: 100%;
+    position: relative;
+
+    &__home{
+        height: 290rem;
+    }
 }

@@ -5762,7 +5762,252 @@ var displayMap = function displayMap() {
   });
 };
 exports.displayMap = displayMap;
-},{}],"index.js":[function(require,module,exports) {
+},{}],"../../node_modules/@emailjs/browser/es/store/store.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.store = void 0;
+var store = {
+  _origin: 'https://api.emailjs.com'
+};
+exports.store = store;
+},{}],"../../node_modules/@emailjs/browser/es/methods/init/init.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.init = void 0;
+var _store = require("../../store/store");
+/**
+ * Initiation
+ * @param {string} publicKey - set the EmailJS public key
+ * @param {string} origin - set the EmailJS origin
+ */
+var init = function init(publicKey) {
+  var origin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'https://api.emailjs.com';
+  _store.store._userID = publicKey;
+  _store.store._origin = origin;
+};
+exports.init = init;
+},{"../../store/store":"../../node_modules/@emailjs/browser/es/store/store.js"}],"../../node_modules/@emailjs/browser/es/utils/validateParams.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.validateParams = void 0;
+var validateParams = function validateParams(publicKey, serviceID, templateID) {
+  if (!publicKey) {
+    throw 'The public key is required. Visit https://dashboard.emailjs.com/admin/account';
+  }
+  if (!serviceID) {
+    throw 'The service ID is required. Visit https://dashboard.emailjs.com/admin';
+  }
+  if (!templateID) {
+    throw 'The template ID is required. Visit https://dashboard.emailjs.com/admin/templates';
+  }
+  return true;
+};
+exports.validateParams = validateParams;
+},{}],"../../node_modules/@emailjs/browser/es/models/EmailJSResponseStatus.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.EmailJSResponseStatus = void 0;
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var EmailJSResponseStatus = /*#__PURE__*/_createClass(function EmailJSResponseStatus(httpResponse) {
+  _classCallCheck(this, EmailJSResponseStatus);
+  this.status = httpResponse ? httpResponse.status : 0;
+  this.text = httpResponse ? httpResponse.responseText : 'Network Error';
+});
+exports.EmailJSResponseStatus = EmailJSResponseStatus;
+},{}],"../../node_modules/@emailjs/browser/es/api/sendPost.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sendPost = void 0;
+var _EmailJSResponseStatus = require("../models/EmailJSResponseStatus");
+var _store = require("../store/store");
+var sendPost = function sendPost(url, data) {
+  var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', function (_ref) {
+      var target = _ref.target;
+      var responseStatus = new _EmailJSResponseStatus.EmailJSResponseStatus(target);
+      if (responseStatus.status === 200 || responseStatus.text === 'OK') {
+        resolve(responseStatus);
+      } else {
+        reject(responseStatus);
+      }
+    });
+    xhr.addEventListener('error', function (_ref2) {
+      var target = _ref2.target;
+      reject(new _EmailJSResponseStatus.EmailJSResponseStatus(target));
+    });
+    xhr.open('POST', _store.store._origin + url, true);
+    Object.keys(headers).forEach(function (key) {
+      xhr.setRequestHeader(key, headers[key]);
+    });
+    xhr.send(data);
+  });
+};
+exports.sendPost = sendPost;
+},{"../models/EmailJSResponseStatus":"../../node_modules/@emailjs/browser/es/models/EmailJSResponseStatus.js","../store/store":"../../node_modules/@emailjs/browser/es/store/store.js"}],"../../node_modules/@emailjs/browser/es/methods/send/send.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.send = void 0;
+var _store = require("../../store/store");
+var _validateParams = require("../../utils/validateParams");
+var _sendPost = require("../../api/sendPost");
+/**
+ * Send a template to the specific EmailJS service
+ * @param {string} serviceID - the EmailJS service ID
+ * @param {string} templateID - the EmailJS template ID
+ * @param {object} templatePrams - the template params, what will be set to the EmailJS template
+ * @param {string} publicKey - the EmailJS public key
+ * @returns {Promise<EmailJSResponseStatus>}
+ */
+var send = function send(serviceID, templateID, templatePrams, publicKey) {
+  var uID = publicKey || _store.store._userID;
+  (0, _validateParams.validateParams)(uID, serviceID, templateID);
+  var params = {
+    lib_version: '3.11.0',
+    user_id: uID,
+    service_id: serviceID,
+    template_id: templateID,
+    template_params: templatePrams
+  };
+  return (0, _sendPost.sendPost)('/api/v1.0/email/send', JSON.stringify(params), {
+    'Content-type': 'application/json'
+  });
+};
+exports.send = send;
+},{"../../store/store":"../../node_modules/@emailjs/browser/es/store/store.js","../../utils/validateParams":"../../node_modules/@emailjs/browser/es/utils/validateParams.js","../../api/sendPost":"../../node_modules/@emailjs/browser/es/api/sendPost.js"}],"../../node_modules/@emailjs/browser/es/methods/sendForm/sendForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sendForm = void 0;
+var _store = require("../../store/store");
+var _validateParams = require("../../utils/validateParams");
+var _sendPost = require("../../api/sendPost");
+var findHTMLForm = function findHTMLForm(form) {
+  var currentForm;
+  if (typeof form === 'string') {
+    currentForm = document.querySelector(form);
+  } else {
+    currentForm = form;
+  }
+  if (!currentForm || currentForm.nodeName !== 'FORM') {
+    throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';
+  }
+  return currentForm;
+};
+/**
+ * Send a form the specific EmailJS service
+ * @param {string} serviceID - the EmailJS service ID
+ * @param {string} templateID - the EmailJS template ID
+ * @param {string | HTMLFormElement} form - the form element or selector
+ * @param {string} publicKey - the EmailJS public key
+ * @returns {Promise<EmailJSResponseStatus>}
+ */
+var sendForm = function sendForm(serviceID, templateID, form, publicKey) {
+  var uID = publicKey || _store.store._userID;
+  var currentForm = findHTMLForm(form);
+  (0, _validateParams.validateParams)(uID, serviceID, templateID);
+  var formData = new FormData(currentForm);
+  formData.append('lib_version', '3.11.0');
+  formData.append('service_id', serviceID);
+  formData.append('template_id', templateID);
+  formData.append('user_id', uID);
+  return (0, _sendPost.sendPost)('/api/v1.0/email/send-form', formData);
+};
+exports.sendForm = sendForm;
+},{"../../store/store":"../../node_modules/@emailjs/browser/es/store/store.js","../../utils/validateParams":"../../node_modules/@emailjs/browser/es/utils/validateParams.js","../../api/sendPost":"../../node_modules/@emailjs/browser/es/api/sendPost.js"}],"../../node_modules/@emailjs/browser/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+Object.defineProperty(exports, "init", {
+  enumerable: true,
+  get: function () {
+    return _init.init;
+  }
+});
+Object.defineProperty(exports, "send", {
+  enumerable: true,
+  get: function () {
+    return _send.send;
+  }
+});
+Object.defineProperty(exports, "sendForm", {
+  enumerable: true,
+  get: function () {
+    return _sendForm.sendForm;
+  }
+});
+var _init = require("./methods/init/init");
+var _send = require("./methods/send/send");
+var _sendForm = require("./methods/sendForm/sendForm");
+var _default = {
+  init: _init.init,
+  send: _send.send,
+  sendForm: _sendForm.sendForm
+};
+exports.default = _default;
+},{"./methods/init/init":"../../node_modules/@emailjs/browser/es/methods/init/init.js","./methods/send/send":"../../node_modules/@emailjs/browser/es/methods/send/send.js","./methods/sendForm/sendForm":"../../node_modules/@emailjs/browser/es/methods/sendForm/sendForm.js"}],"emailJS.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sendEmail = void 0;
+var _browser = _interopRequireDefault(require("@emailjs/browser"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var sendEmail = function sendEmail(name, email, message) {
+  var serviceID = 'service_pvm8ug8';
+  var templateID = 'template_5pujdro';
+  var userID = '_u15uwA3W4NwttQaw';
+
+  // Get the user's input from the form
+  // const name = document.getElementById('name').value;
+  // const email = document.getElementById('email').value;
+  // const message = document.getElementById('message').value;
+
+  // Use the emailJS library to send the email
+  _browser.default.init(userID);
+  var params = {
+    name: name,
+    email: email,
+    message: message
+  };
+  _browser.default.send(serviceID, templateID, params).then(function (response) {
+    console.log('SUCCESS!', response.status, response.text);
+  }, function (error) {
+    console.log('FAILED...', error);
+  });
+};
+exports.sendEmail = sendEmail;
+},{"@emailjs/browser":"../../node_modules/@emailjs/browser/es/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _handleProducts = require("./handleProducts");
@@ -5772,12 +6017,24 @@ var _helpers = require("./helpers");
 var _markups = require("./markups");
 var _auth = require("./auth");
 var _mapbox = require("./mapbox");
+var _emailJS = require("./emailJS");
 if (document.querySelector("#map")) (0, _mapbox.displayMap)();
 var modal = document.querySelector(".modal__dynamic");
 
 // ACTIVE NAVBAR LINK
 document.querySelectorAll(".navbar__link").forEach(function (link) {
   return window.location.href === link.href ? link.classList.add("active") : link.classList.remove("active");
+});
+
+// HAMBURGER MENU
+var hamburgerButton = document.querySelector(".navbar__hamburger");
+var navbarLinks = document.querySelectorAll(".navbar__link");
+hamburgerButton.addEventListener("click", function () {
+  var expanded = hamburgerButton.getAttribute("aria-expanded") === "true" || false;
+  hamburgerButton.setAttribute("aria-expanded", !expanded);
+  navbarLinks.forEach(function (link) {
+    return link.classList.toggle("active");
+  });
 });
 
 // CLOSE MODAL
@@ -5861,7 +6118,20 @@ if (document.getElementById("btn-upload-category")) {
     (0, _createNewCategory.createNewCategory)(form);
   });
 }
-},{"./handleProducts":"handleProducts.js","./alerts":"alerts.js","./createNewCategory":"createNewCategory.js","./helpers":"helpers.js","./markups":"markups.js","./auth":"auth.js","./mapbox":"mapbox.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+// SEND EMAIL 
+if (document.querySelector(".form__contact")) {
+  var form = document.querySelector(".form__contact");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    console.log(name, email, message);
+    (0, _emailJS.sendEmail)(name, email, message);
+  });
+}
+},{"./handleProducts":"handleProducts.js","./alerts":"alerts.js","./createNewCategory":"createNewCategory.js","./helpers":"helpers.js","./markups":"markups.js","./auth":"auth.js","./mapbox":"mapbox.js","./emailJS":"emailJS.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -5886,7 +6156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49499" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51889" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

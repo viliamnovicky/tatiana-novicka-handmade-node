@@ -89,8 +89,8 @@
 html {
   font-size: 62.5%;
   width: 100%;
-  min-height: 100vh;
   background: rgb(235, 253, 253);
+  position: relative;
 }
 
 body {
@@ -569,7 +569,8 @@ p, a {
 @media only screen and (max-width: 75em) {
   .footer {
     grid-template-columns: 1fr;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     height: 19rem;
   }
 }
@@ -859,6 +860,7 @@ input[type=file]::file-selector-button:hover {
   align-items: center;
   margin: auto;
   border-bottom: 2px solid white;
+  position: relative;
 }
 @media only screen and (max-width: 56.25em) {
   .header {
@@ -942,14 +944,21 @@ input[type=file]::file-selector-button:hover {
   justify-content: space-evenly;
   width: 80%;
 }
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 75em) {
   .navbar {
     grid-template-columns: 1fr;
-    visibility: hidden;
+    flex-direction: column;
+    background: rgba(54, 54, 54, 0.8);
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 }
 .navbar__link {
-  margin-top: 0.5rem;
   display: grid;
   color: black;
   padding: 1.5rem 0;
@@ -966,6 +975,16 @@ input[type=file]::file-selector-button:hover {
   .navbar__link {
     width: 15rem;
     font-size: 1.6rem;
+  }
+}
+@media only screen and (max-width: 75em) {
+  .navbar__link {
+    margin-top: 5rem;
+    width: 70vw;
+    font-size: 3rem;
+    color: white;
+    background: rgba(180, 255, 255, 0.7);
+    border-radius: 1rem;
   }
 }
 .navbar__link:hover {
@@ -985,18 +1004,6 @@ input[type=file]::file-selector-button:hover {
 .section__home {
   width: 100vw;
   height: 70vh;
-}
-.section__home-1 {
-  background: url(../img/home01.jpg) no-repeat center center/cover;
-}
-.section__home-2 {
-  background: url(../img/home033.jpg) no-repeat center center/cover;
-}
-.section__home-3 {
-  background: url(../img/home02.jpg) no-repeat center center/cover;
-}
-.section__home-4 {
-  background: url(../img/home033.jpg) no-repeat center center/cover;
 }
 .section__products--cont {
   border-radius: 1rem;
@@ -1166,6 +1173,11 @@ input[type=file]::file-selector-button:hover {
 .main {
   animation: goUp 0.5s;
   background: rgb(235, 253, 253);
+  height: 100%;
+  position: relative;
+}
+.main__home {
+  height: 290rem;
 }
 
 .product {
@@ -1229,10 +1241,104 @@ input[type=file]::file-selector-button:hover {
   width: 25%;
 }
 
+.hamburger {
+  position: fixed;
+}
+.hamburger__checkbox {
+  visibility: hidden;
+  position: fixed;
+}
+.hamburger__btn {
+  top: 2rem;
+  right: 2rem;
+  border-radius: 1rem;
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+  transition-delay: 0.5s;
+  z-index: 1000000;
+  position: fixed;
+}
+@media only screen and (max-width: 75em) {
+  .hamburger__links {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .hamburger__part {
+    display: block;
+    width: 70%;
+    height: 5px;
+    background: white;
+    border-radius: 10rem;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition: all 0.5s;
+    background: rgb(54, 54, 54);
+  }
+  .hamburger__part--top {
+    left: 50%;
+    top: 25%;
+  }
+  .hamburger__part--middle {
+    top: 50%;
+    left: 50%;
+  }
+  .hamburger__part--bottom {
+    left: 50%;
+    bottom: 25%;
+    transform: translate(-50%, 50%);
+  }
+  .hamburger__checkbox:checked + .hamburger__btn {
+    transform: rotate(180deg);
+  }
+  .hamburger__checkbox:checked + .hamburger__btn .hamburger__btn__part {
+    background: white;
+  }
+  .hamburger__checkbox:checked + .hamburger__btn .hamburger__part--top {
+    transform: translate(-50%, -50%) rotate(45deg);
+    margin-top: 25%;
+    background: white;
+  }
+  .hamburger__checkbox:checked + .hamburger__btn .hamburger__part--middle {
+    width: 0;
+    left: 10%;
+  }
+  .hamburger__checkbox:checked + .hamburger__btn .hamburger__part--bottom {
+    transform: translate(-50%, 50%) rotate(-45deg);
+    margin-bottom: 25%;
+    background: white;
+  }
+  .hamburger__checkbox:checked ~ .hamburger__links {
+    opacity: 1;
+    visibility: visible;
+  }
+  .hamburger__checkbox:checked ~ .hamburger__links .hamburger__link {
+    opacity: 1;
+  }
+}
+
 .about {
   width: 100vw;
   height: 70rem;
   position: relative;
+}
+@media only screen and (max-width: 56.25em) {
+  .about .about__cont {
+    width: 100vw;
+  }
+  .about .about__text {
+    width: 100vw;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 2vw;
+    background: rgba(255, 255, 255, 0.5);
+    bottom: -15rem;
+  }
 }
 .about__bio {
   background: rgba(180, 255, 255, 0.1);

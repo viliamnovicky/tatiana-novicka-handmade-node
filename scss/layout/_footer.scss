@@ -15,7 +15,8 @@
 
     @include respond(tab-land) {
         grid-template-columns: 1fr;
-        position: relative;
+        position: absolute;
+        bottom: 0;
         height: 19rem;
     }
 

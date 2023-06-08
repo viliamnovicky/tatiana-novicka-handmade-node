@@ -1,20 +1,25 @@
 
-.header
+.header.hamburger
     .header__logo
         h1.header__logo--h1 Tatiana Novická
         h3.header__logo--h3 HANDMADE
+    input(type="checkbox" class="hamburger__checkbox" id="hamburger")
+    label(for="hamburger" class="hamburger__btn")
+        span.hamburger__part.hamburger__part--top
+        span.hamburger__part.hamburger__part--middle
+        span.hamburger__part.hamburger__part--bottom
     if admin
-        nav.navbar
-            a.navbar__link.nav__link--home(href="/") o mne
-            a.navbar__link.nav__link--products(href="/produkty") produkty
-            a.navbar__link.nav__link--costumers(href="/zakaznici") spokojní zákazníci
-            a.navbar__link.nav__link--contact(href="/kontakt") kontakt
-            a.navbar__link.nav__link--contact(href="/admin") admin
+        nav.navbar.hamburger__links
+            a.navbar__link.nav__link--home.hamburger__link(href="/") o mne
+            a.navbar__link.nav__link--products.hamburger__link(href="/produkty") produkty
+            a.navbar__link.nav__link--costumers.hamburger__link(href="/zakaznici") spokojní zákazníci
+            a.navbar__link.nav__link--contact.hamburger__link(href="/kontakt") kontakt
+            a.navbar__link.nav__link--contact.hamburger__link(href="/admin") admin
     else 
-        nav.navbar
-            a.navbar__link.nav__link--home(href="/") o mne
-            a.navbar__link.nav__link--products(href="/produkty") produkty
-            a.navbar__link.nav__link--costumers(href="/zakaznici") spokojní zákazníci
-            a.navbar__link.nav__link--contact(href="/kontakt") kontakt
+        nav.navbar.hamburger__links
+            a.navbar__link.nav__link--home.hamburger__link(href="/") o mne
+            a.navbar__link.nav__link--products.hamburger__link(href="/produkty") produkty
+            a.navbar__link.nav__link--costumers.hamburger__link(href="/zakaznici") spokojní zákazníci
+            a.navbar__link.nav__link--contact.hamburger__link(href="/kontakt") kontakt
             
         

@@ -1,0 +1,94 @@
+.hamburger {
+    position: fixed;
+    
+    &__checkbox {
+        visibility: hidden;
+        position:fixed;
+    }
+
+    &__btn {
+        top: 2rem;
+        right: 2rem;
+        border-radius: 1rem;
+        width: 5rem;
+        height: 5rem;
+        cursor: pointer;
+        transition-delay: .5s;
+        z-index: 1000000;
+        position: fixed;
+    }
+    @include respond (tab-land) {
+    
+        &__links {
+            visibility: hidden;
+            opacity: 0;
+        }
+    
+    
+        &__part {
+            display: block;
+            width: 70%;
+            height: 5px;
+            background: white;
+            border-radius: 10rem;
+            position: absolute;
+            backface-visibility: hidden;
+            transform: translate(-50%, -50%);
+            transform-origin: center;
+            transition: all .5s;
+            background: $color-dark;
+    
+            &--top {
+                left: 50%;
+                top: 25%;
+            }
+    
+            &--middle {
+                top: 50%;
+                left: 50%;
+            }
+    
+            &--bottom {
+                left: 50%;
+                bottom: 25%;
+                transform: translate(-50%, 50%);
+            }
+        }
+    
+        &__checkbox:checked + &__btn {
+            transform: rotate(180deg);
+        }
+    
+        &__checkbox:checked + &__btn &__btn__part {
+            background: $color-white;
+        }
+    
+        &__checkbox:checked + &__btn &__part--top {
+            transform: translate(-50%, -50%) rotate(45deg);
+            margin-top: 25%;
+            background: white;
+        }
+    
+        &__checkbox:checked + &__btn &__part--middle {
+            width: 0;
+            left: 10%;
+        }
+    
+        &__checkbox:checked + &__btn &__part--bottom {
+            transform: translate(-50%, 50%) rotate(-45deg);
+            margin-bottom: 25%;
+            background: white;
+        }
+    
+        &__checkbox:checked ~ &__links{
+            opacity: 1;
+            visibility: visible;
+            
+        }
+    
+        &__checkbox:checked ~ &__links &__link{
+            opacity: 1;
+        }
+    }
+
+}
