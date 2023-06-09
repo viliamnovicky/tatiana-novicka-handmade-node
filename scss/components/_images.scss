@@ -41,6 +41,9 @@
     &__sewing {
         @include absolute-center;
         z-index: 2;
+        @include respond(tab-land) {
+            opacity: .5;
+        }
     }
 
     &__latky {

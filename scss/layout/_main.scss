@@ -6,5 +6,9 @@
 
     &__home{
         height: 290rem;
+
+        @include respond(tab-land) {
+            height: 320rem;
+          }
     }
 }

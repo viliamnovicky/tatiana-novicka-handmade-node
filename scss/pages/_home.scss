@@ -2,21 +2,21 @@
   width: 100vw;
   height: 70rem;
   position: relative;
+  overflow: hidden;
 
   @include respond(tab-port) {
-
     .about__cont {
       width: 100vw;
     }
 
     .about__text {
-        width: 100vw; 
-        margin: auto;
-        @include absolute-center-x;
-        z-index: 100;
-        padding: 2vw;
-        background: rgba($color-white, .5);
-        bottom: -15rem;
+      width: 100vw;
+      margin: auto;
+      @include absolute-center-x;
+      z-index: 100;
+      padding: 2vw;
+      background: rgba($color-white, 0.5);
+      bottom: -15rem;
     }
   }
 
@@ -27,26 +27,45 @@
 
   &__description {
     background: rgba($color-primary, 0.3);
+    @include respond(tab-land) {
+      height: 100rem;
+    }
 
     .about__cont {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
       width: 100%;
+
+      @include respond(tab-land) {
+        flex-direction: column;
+        height: 100rem;
+      }
     }
 
     &--cont {
       position: relative;
       border-radius: 50%;
-      width: 35rem;
-      height: 35rem;
+      width: 45rem;
+      height: 45rem;
       display: flex;
       justify-content: center;
       align-items: center;
 
+      @include respond(tab-land) {
+        width: 80vw;
+        height: 80vw;
+        border-radius: 0;
+      }
+      
       h2 {
         opacity: 1;
         z-index: 2;
+
+        @include respond(tab-land) {
+          top: 8rem;
+          position: absolute;
+        }
       }
 
       p {
@@ -56,11 +75,17 @@
         padding: 2rem;
         font-weight: 800;
         z-index: 2;
+
+        @include respond(tab-land) {
+          opacity: 1;
+          width: 90vw;
+          bottom: 5rem;
+        }
       }
 
       &:hover {
-        width: 40rem;
-        height: 40rem;
+        width: 45rem;
+        height: 45rem;
         border-radius: 1rem;
         p {
           opacity: 1;
@@ -72,6 +97,19 @@
 
         img {
           transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        @include respond(tab-land) {
+          width: 80vw;
+          height: 80vw;
+
+          h2 {
+            opacity: 1;
+          }
+
+          img {
+            transform: translate(-50%, -50%);
+          }
         }
       }
     }
@@ -87,6 +125,14 @@
       left: 0;
       z-index: 1;
       width: 70rem;
+
+      @include respond(tab-land) {
+        padding: 0;
+        @include absolute-center;
+        z-index: 2;
+        width: 100vw;
+        padding: 2rem;
+    }
     }
   }
 
@@ -98,6 +144,15 @@
       right: 0;
       top: 15rem;
       width: 60rem;
+
+      @include respond(tab-land) {
+        padding: 0;
+        @include absolute-center;
+        z-index: 2;
+        width: 100vw;
+        padding: 2rem;
+        top: 30%;
+    }
     }
   }
 
